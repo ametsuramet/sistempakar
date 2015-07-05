@@ -8,8 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\MessageBag;
 use Auth;
+use Redirect;
 
 class AuthController extends Controller
 {
@@ -66,30 +67,31 @@ class AuthController extends Controller
         ]);
     }
 
-     // public function postLogin(Request $request)
-     //    {
+     public function postLogin(Request $request)
+        {
 
-     //            if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+                // if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
 
-     //                // echo "success with username!";
-     //                        return Redirect::to('/');
+                //     // echo "success with username!";
+                //             return Redirect::to('/');
                         
-     //                } 
+                //     } 
 
-     //                elseif (Auth::attempt(['email'=> $request->username, 'password' => $request->password])) {
+                //     else
+            if (Auth::attempt(['email'=> $request->email, 'password' => $request->password])) {
 
-     //                        // echo "success with email!"; 
-     //                        return Redirect::to('/');
-     //                } 
+                            // echo "success with email!"; 
+                            return Redirect::to('/');
+                    } 
 
 
-     //                else {
-     //                        // echo "fail!";
-     //                        $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
-     //                        return Redirect::to('auth/login')->withErrors($errors);
+                    else {
+                            // echo "fail!";
+                            $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+                            return Redirect::to('auth/login')->withErrors($errors);
 
-     //                }
-     //        // die();  
-     //        // echo "aye";
-     //    }
+                    }
+            // die();  
+            // echo "aye";
+        }
 }

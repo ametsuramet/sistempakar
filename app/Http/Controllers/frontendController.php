@@ -22,7 +22,29 @@ class frontendController extends masterController
      */
 
     public function peneliti(){
-        $data = peneliti::with('pakar_spesifik','pakar_spesifik.pakar_digit3','pakar_spesifik.pakar_digit3.pakar_digit2','detail_pangkat','detail_jabatan')->get();
+    
+        $digit2 = (isset($_GET['digit2'])?$_GET['digit2']:0);
+        $digit3 = (isset($_GET['digit3'])?$_GET['digit3']:0);
+        $spesifik = (isset($_GET['spesifik'])?$_GET['spesifik']:0);
+        $jabatan = (isset($_GET['jabatan'])?$_GET['jabatan']:0);
+        $pangkat = (isset($_GET['pangkat'])?$_GET['pangkat']:0);
+        $data = peneliti::with('pakar_spesifik','pakar_spesifik.pakar_digit3','pakar_spesifik.pakar_digit3.pakar_digit2','detail_pangkat','detail_jabatan');
+        if($spesifik) $data = $data->where('spesifik',$spesifik);
+        if($jabatan) $data = $data->where('jabatan',$jabatan);
+        if($pangkat) $data = $data->where('pangkat',$pangkat);
+        if($digit3){
+            $data = $data->whereHas('pakar_spesifik',function($q) use ($digit3){
+                $q->where('spesifik.digit3',$digit3);
+            });
+        }
+        if($digit2){
+            $data = $data->whereHas('pakar_spesifik',function($q) use ($digit2){
+                $q->whereHas('pakar_digit3',function($r) use ($digit2){
+                    $r->where('digit3.digit2',$digit2);
+                });
+            });
+        }
+        $data = $data->get();
 
         return view('peneliti',compact('data'));
     }

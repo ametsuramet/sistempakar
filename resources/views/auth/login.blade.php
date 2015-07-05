@@ -44,7 +44,16 @@
                     <div class="panel-body">
                         <form role="form" action="/auth/login" method="post">
                         <input name="_token" type="hidden" value="{{csrf_token()}}" />
-
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Error! 
+                                    @foreach($errors->getMessages() as $this_error)
+                                        {{$this_error[0]}}
+                                    @endforeach
+                                </strong>
+                            </div>
+                        @endif
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="text" autofocus>

@@ -19,6 +19,9 @@
     					<tr>
     						<th>No</th>
     						<th>Jabatan</th>
+                            @if(Auth::user())
+                            <th width="10%"></th>
+                            @endif
     					</tr>
     				</thead>
     				<tbody>
@@ -27,6 +30,12 @@
     					<tr>
     						<td width="7%">{{$i+1}}</td>
     						<td>{{$d->nama}}</td>
+                            @if(Auth::user())
+                            <td>
+                            <a type="button" class="btn btn-success btn-xs" href="/admin/tambahjabatan?edit=1&id={{$d->id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a> 
+                            <a type="button" class="btn btn-danger btn-xs delete" href="/admin/delete?mode=jabatan&id={{$d->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+                            </td>
+                            @endif
     					</tr>
     					@endforeach
     					@else

@@ -20,3 +20,15 @@
     <script src="/js/datetime.js"></script>
 
     @yield('script')
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+      $('.delete').click(function(){
+        var con = confirm('Are You Sure')
+        if(!con){
+            return false
+        }
+      })
+
+    })
+    </script>

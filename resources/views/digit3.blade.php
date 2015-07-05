@@ -18,8 +18,11 @@
     				<thead>
     					<tr>
     						<th>No</th>
+                            <th>Digit 3</th>
                             <th>Digit 2</th>
-    						<th>Digit 3</th>
+                            @if(Auth::user())
+                            <th width="10%"></th>
+                            @endif
     					</tr>
     				</thead>
     				<tbody>
@@ -27,8 +30,22 @@
     					@foreach($data as $i=>$d)
     					<tr>
     						<td width="7%">{{$i+1}}</td>
-                            <td>{{$d->pakar_digit2->nama}}</td>
-    						<td>{{$d->nama}}</td>
+                            <td>
+                                <a href='/peneliti?digit3={{$d->id}}'>
+                                {{$d->nama}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href='/peneliti?digit2={{$d->pakar_digit2->id}}'>
+                                {{$d->pakar_digit2->nama}}
+                                </a>
+                            </td>
+                            @if(Auth::user())
+                            <td>
+                            <a type="button" class="btn btn-success btn-xs" href="/admin/tambahdigit3?edit=1&id={{$d->id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a> 
+                            <a type="button" class="btn btn-danger btn-xs delete" href="/admin/delete?mode=digit3&id={{$d->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+                            </td>
+                            @endif
     					</tr>
     					@endforeach
     					@else

@@ -15,7 +15,7 @@ class CreateTablePeneliti extends Migration
         Schema::create('peneliti', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama', 255);
-            $table->integer('nip');
+            $table->string('nip',255);
             $table->integer('jabatan');
             $table->string('pendidikan', 15);
             $table->integer('pangkat');

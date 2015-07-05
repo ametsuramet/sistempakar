@@ -13,10 +13,11 @@
 
         <form action="/admin/tambahjabatan" method="POST" role="form">
                         <input name="_token" type="hidden" value="{{csrf_token()}}" />
+                        <input name="id" type="hidden" value="{{($edit?$edit->id:0)}}" />
         
         	<div class="form-group">
         		<label for="nama">Jabatan</label>
-        		<input type="text" class="form-control" id="" name="nama" placeholder="Jabatan">
+        		<input type="text" class="form-control" id="" name="nama" placeholder="Jabatan"  value="{{($edit?$edit->nama:null)}}">
         	</div>
         
         

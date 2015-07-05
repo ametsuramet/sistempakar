@@ -13,25 +13,31 @@
 
         <form action="/admin/tambahspesifik" method="POST" role="form">
                         <input name="_token" type="hidden" value="{{csrf_token()}}" />
+                        <input name="id" type="hidden"  value="{{($edit?$edit->id:0)}}" />
         
             <div class="form-group">
                 <label for="nama">Bidang Kepakaran Spesifik</label>
-                <input type="text" class="form-control" id="" name="nama" placeholder="Bidang Kepakaran Spesifik">
+                <input type="text" class="form-control" id="" name="nama" placeholder="Bidang Kepakaran Spesifik" value="{{($edit?$edit->nama:'')}}">
             </div>
             
             
         
         	<div class="form-group">
-        		<label for="nama">Bidang Kepakaran Digit 3</label>
-                <select class="form-control" name='digit3'>
-                    @foreach($digit2 as $dg2)    
-                    <optgroup label="{{$dg2->nama}}">
-                    	@foreach($dg2->pakar_digit3 as $d)    
-                    	<option value="{{$d->id}}">{{$d->nama}}</option>
-                    	@endforeach
-                    </optgroup>
-                    @endforeach
-                </select>
+        		<label for="nama">Bidang Kepakaran Digit 3 </label>
+                <div class="input-group">
+                    <select class="form-control" name='digit3'>
+                        @foreach($digit2 as $dg2)    
+                        <optgroup label="{{$dg2->nama}}">
+                        	@foreach($dg2->pakar_digit3 as $d)    
+                        	<option value="{{$d->id}}" {{($edit?($edit->pakar_digit3->id==$d->id?'selected':null):null)}}>{{$d->nama}}</option>
+                        	@endforeach
+                        </optgroup>
+                        @endforeach
+                    </select>
+                    <div class="input-group-btn">
+                        <a class="btn btn-default" href="/admin/tambahdigit3">+</a>
+                    </div>
+                </div>
         	</div>
             
 

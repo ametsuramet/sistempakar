@@ -45,6 +45,11 @@ Route::group(['middleware'=>'auth'],function(){
 
 		Route::get('tambahspesifik', 'backendController@tambahspesifik');
 		Route::post('tambahspesifik', 'backendController@tambahspesifikproses');
+		Route::get('delete', 'backendController@delete');
+
+		Route::get('user', 'backendController@user');
+		Route::get('tambahuser', 'backendController@tambahuser');
+		Route::post('tambahuser', 'backendController@tambahuserproses');
 
 		Route::get('ajaxSpesifik', 'backendController@ajaxSpesifik');
 	});

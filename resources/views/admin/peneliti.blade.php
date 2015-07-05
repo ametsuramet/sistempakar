@@ -13,64 +13,77 @@
 
         <form action="tambahpeneliti" method="POST" role="form">
                         <input name="_token" type="hidden" value="{{csrf_token()}}" />
+                        <input name="id" type="hidden" value="{{($edit)?$edit->id:0}}" />
         
         	<div class="form-group">
         		<label for="nama">Nama</label>
-        		<input type="text" class="form-control" id="" name="nama" placeholder="Nama Lengkap">
+        		<input type="text" class="form-control" id="" name="nama" placeholder="Nama Lengkap" value="{{($edit?$edit->nama:null)}}" required>
         	</div>
         
         	<div class="form-group">
         		<label for="nip">NIP</label>
-        		<input type="number" class="form-control" id="" name="nip" placeholder="NIP">
+        		<input type="number" class="form-control" id="" name="nip" placeholder="NIP" value="{{($edit?$edit->nip:null)}}" required>
         	</div>
         
             <div class="form-group">
                 <label for="jabatan">Jabatan</label>
-                <select  class="form-control" id="" name="jabatan">
+                <div class="input-group">
+                <select  class="form-control" id="" name="jabatan" value="{{($edit?$edit->jabatan:null)}}">
                     @foreach($jabatan as $d)    
                     <option value="{{$d->id}}">{{$d->nama}}</option>
                     @endforeach
                 </select>
+                <div class="input-group-btn">
+                    <a class="btn btn-default" href="/admin/tambahjabatan">+</a>
+                </div>
+                </div>
+
             </div>
         
         	<div class="form-group">
         		<label for="pangkat">Pangkat / Golongan</label>
-                <select  class="form-control" id="" name="pangkat">
+                <div class="input-group">
+                <select  class="form-control" id="" name="pangkat" value="{{($edit?$edit->pangka:null)}}">
                     @foreach($pangkat as $d)    
                     <option value="{{$d->id}}">{{$d->nama}}</option>
                     @endforeach
                 </select>
+                <div class="input-group-btn">
+                    <a class="btn btn-default" href="/admin/tambahpangkat">+</a>
+                </div>
+                </div>
         	</div>
         
         	<div class="form-group">
         		<label for="pendidikan">Pendidikan</label>
-        		<input type="text" class="form-control" id="" name="pendidikan" placeholder="Pendidikan">
+        		<input type="text" class="form-control" id="" name="pendidikan" placeholder="Pendidikan" required value="{{($edit?$edit->pendidikan:null)}}">
         	</div>
         
         	<div class="form-group">
                 <label for="spesifik">Bidang Kepakaran</label>
-                <select  class="form-control" id="" name="digit3">
-                <option>------Pilih Bidang Kepakaran------</option>
-                    @foreach($digit2 as $dg2)    
-                    <optgroup label="{{$dg2->nama}}">
-                        @foreach($dg2->pakar_digit3 as $d)    
-                        <option value="{{$d->id}}">{{$d->nama}}</option>
-                        @endforeach
-                    </optgroup>
-                    @endforeach
-                </select>
+                <div class="input-group">
+
+                {!! Form::select('digit3', $digit2, ($edit?$edit->pakar_spesifik->pakar_digit3->id:null) , ['class' => 'form-control']) !!}
+                <div class="input-group-btn">
+                    <a class="btn btn-default" href="/admin/tambahdigit3">+</a>
+                </div>
+                </div>
+                
             </div>
-        
             <div class="form-group">
                 <label for="spesifik">Kepakaran Spesifik</label>
-                <select  class="form-control" id="" name="spesifik">
-                    
-                </select>
+                <div class="input-group">
+
+                {!! Form::select('spesifik', $list_spesifik, ($edit?$edit->spesifik:null) , ['class' => 'form-control']) !!}
+                <div class="input-group-btn">
+                    <a class="btn btn-default" href="/admin/tambahspesifik">+</a>
+                </div>
+                </div>
             </div>
         
             <div class="form-group">
         		<label for="spesifik">Bulan/Tahun Pensiun</label>
-        	   <input class="form-control datetimepicker" name="pensiun"></div>
+        	   <input class="form-control datetimepicker" name="pensiun" value="{{($edit?explode('-',$edit->pensiun)[0]:null)}}-{{($edit?explode('-',$edit->pensiun)[1]:null)}}">
         	</div>
         
         	
@@ -98,6 +111,8 @@ $(document).ready(function(){
     })
       $('.datetimepicker').datetimepicker({
         format: 'YYYY-MM',
+         viewMode: "months",
+         minViewMode: "months",
         pick12HourFormat: false    
       })
 

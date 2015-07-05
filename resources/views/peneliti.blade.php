@@ -1,4 +1,8 @@
 @extends('master')
+@section('style')
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+
+@endsection
 @section('content')
 <div id="page-wrapper">
     <div class="row">
@@ -26,7 +30,11 @@
     						<th>Pendidikan</th>
     						<th>Pangkat/Golongan</th>
     						<th>Kepakaran / Spesifik</th>
-    						<th>Bulan/Thn Pensiun</th>
+                            <th>Bulan/Thn Pensiun</th>
+                            @if(Auth::user())
+    						<th></th>
+                            @endif
+
     					</tr>
     				</thead>
     				<tbody>
@@ -34,15 +42,41 @@
     					@foreach($data as $i=>$d)
     					<tr>
     						<td>{{$i+1}}</td>
-    						<td><a href='/peneliti?digit2={{$d->pakar_spesifik->pakar_digit3->pakar_digit2->id}}'>{{$d->pakar_spesifik->pakar_digit3->pakar_digit2->nama}}</a></td>
-    						<td>{{$d->pakar_spesifik->pakar_digit3->nama}}</td>
+    						<td>
+                                <a href='/peneliti?digit2={{$d->pakar_spesifik->pakar_digit3->pakar_digit2->id}}'>
+                                    {{$d->pakar_spesifik->pakar_digit3->pakar_digit2->nama}}
+                                </a>
+                            </td>
+    						<td>
+                                <a href='/peneliti?digit3={{$d->pakar_spesifik->pakar_digit3->id}}'>
+                                    {{$d->pakar_spesifik->pakar_digit3->nama}}
+                                </a>
+                            </td>
     						<td>{{$d->nama}}</td>
     						<td>{{$d->nip}}</td>
-    						<td>{{$d->detail_jabatan->nama}}</td>
+    						<td>
+                                <a href='/peneliti?jabatan={{$d->detail_jabatan->id}}'>
+                                {{$d->detail_jabatan->nama}}
+                                </a>
+                            </td>
     						<td>{{$d->pendidikan}}</td>
-    						<td>{{$d->detail_pangkat->nama}}</td>
-    						<td>{{$d->pakar_spesifik->nama}}</td>
-    						<td>{{date('M Y',strtotime($d->pensiun))}}</td>
+    						<td>
+                                <a href='/peneliti?pangkat={{$d->detail_pangkat->id}}'>
+                                {{$d->detail_pangkat->nama}}
+                                </a>
+                            </td>
+    						<td>
+                                <a href='/peneliti?spesifik={{$d->pakar_spesifik->id}}'>
+                                {{$d->pakar_spesifik->nama}}
+                                </a>
+                            </td>
+    						<td>{{Lib::bulan(explode('-',$d->pensiun)[1])}} {{explode('-',$d->pensiun)[0]}}</td>
+                                @if(Auth::user())
+                            <td>
+                            <a type="button" class="btn btn-success btn-xs" href="/admin/tambahpeneliti?edit=1&id={{$d->id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a> 
+                             <a type="button" class="btn btn-danger btn-xs delete" href="/admin/delete?mode=peneliti&id={{$d->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+                            </td>
+                                @endif
     					</tr>
     					@endforeach
     					@else
@@ -58,4 +92,13 @@
     	</div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.table').DataTable();
+    });
+</script>
 @endsection
