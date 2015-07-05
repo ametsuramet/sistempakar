@@ -11,6 +11,7 @@ use App\pangkat;
 use App\digit3;
 use App\digit2;
 use App\spesifik;
+use App\peneliti;
 use App\User;
 
 
