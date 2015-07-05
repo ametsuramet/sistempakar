@@ -1,0 +1,44 @@
+<?php $__env->startSection('content'); ?>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Digit 3 
+            <?php if(Auth::user()): ?>
+            <a class="btn btn-primary pull-right" href="/admin/tambahdigit3"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Digit 3 </a>
+            <?php endif; ?>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>	
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="table-responsive">
+    			<table class="table table-bordered table-hover">
+    				<thead>
+    					<tr>
+    						<th>No</th>
+                            <th>Digit 2</th>
+    						<th>Digit 3</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<?php if(count($data)): ?>
+    					<?php foreach($data as $i=>$d): ?>
+    					<tr>
+    						<td width="7%"><?php echo e($i+1); ?></td>
+                            <td><?php echo e($d->pakar_digit2->nama); ?></td>
+    						<td><?php echo e($d->nama); ?></td>
+    					</tr>
+    					<?php endforeach; ?>
+    					<?php else: ?>
+    					<tr>
+    						<td colspan="2">No Data...</td>
+    					</tr>
+    					<?php endif; ?>
+    				</tbody>
+    			</table>
+    		</div>
+    	</div>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

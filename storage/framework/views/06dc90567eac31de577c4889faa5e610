@@ -1,0 +1,61 @@
+<?php $__env->startSection('content'); ?>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Peneliti 
+            <?php if(Auth::user()): ?>
+            <a class="btn btn-primary pull-right" href="/admin/tambahpeneliti"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Peneliti</a>
+            <?php endif; ?>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="table-responsive">
+    			<table class="table table-bordered table-hover">
+    				<thead>
+    					<tr>
+    						<th>No</th>
+    						<th>Digit 2</th>
+    						<th>Digit 3</th>
+    						<th>Nama Peneliti</th>
+    						<th>NIP</th>
+    						<th>Jabatan</th>
+    						<th>Pendidikan</th>
+    						<th>Pangkat/Golongan</th>
+    						<th>Kepakaran / Spesifik</th>
+    						<th>Bulan/Thn Pensiun</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<?php if(count($data)): ?>
+    					<?php foreach($data as $i=>$d): ?>
+    					<tr>
+    						<td><?php echo e($i+1); ?></td>
+    						<td><a href='/peneliti?digit2=<?php echo e($d->pakar_spesifik->pakar_digit3->pakar_digit2->id); ?>'><?php echo e($d->pakar_spesifik->pakar_digit3->pakar_digit2->nama); ?></a></td>
+    						<td><?php echo e($d->pakar_spesifik->pakar_digit3->nama); ?></td>
+    						<td><?php echo e($d->nama); ?></td>
+    						<td><?php echo e($d->nip); ?></td>
+    						<td><?php echo e($d->detail_jabatan->nama); ?></td>
+    						<td><?php echo e($d->pendidikan); ?></td>
+    						<td><?php echo e($d->detail_pangkat->nama); ?></td>
+    						<td><?php echo e($d->pakar_spesifik->nama); ?></td>
+    						<td><?php echo e(date('M Y',strtotime($d->pensiun))); ?></td>
+    					</tr>
+    					<?php endforeach; ?>
+    					<?php else: ?>
+    					<tr>
+    						<td colspan="10">No Data...</td>
+    					</tr>
+    					<?php endif; ?>
+    				</tbody>
+    			</table>
+    		</div>
+
+    		
+    	</div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
