@@ -29,6 +29,20 @@
             return false
         }
       })
-
+      $('.btn-search').click(function(){
+        var q = $('.search').val();
+        search(q)
+      })
+      $('.search').keypress(function(e){
+        var q = $(this).val();
+        if(e.keyCode == 13)
+        search(q)
+      })
     })
+
+    var search = function(q){
+        // alert(q)
+        location.href = '/search?q='+q
+    }
+
     </script>

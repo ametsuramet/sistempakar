@@ -22,6 +22,7 @@ Route::get('digit2', 'frontendController@digit2');
 Route::get('digit3', 'frontendController@digit3');
 Route::get('jabatan', 'frontendController@jabatan');
 Route::get('pangkat', 'frontendController@pangkat');
+Route::get('search', 'frontendController@search');
 
 Route::group(['middleware'=>'auth'],function(){
 

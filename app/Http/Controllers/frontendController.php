@@ -21,6 +21,14 @@ class frontendController extends masterController
      * @return Response
      */
 
+    public function search(){
+        $q = $_GET['q'];
+        $data = peneliti::with('pakar_spesifik','pakar_spesifik.pakar_digit3','pakar_spesifik.pakar_digit3.pakar_digit2','detail_pangkat','detail_jabatan');
+        $data = $data->where('nama','like','%'.$q.'%')->get();
+        // print_r($data);
+        return view('peneliti',compact('data'));
+        
+    }
     public function peneliti(){
     
         $digit2 = (isset($_GET['digit2'])?$_GET['digit2']:0);
