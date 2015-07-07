@@ -70,7 +70,11 @@
                                 {{$d->pakar_spesifik->nama}}
                                 </a>
                             </td>
-    						<td>{{Lib::bulan(explode('-',$d->pensiun)[1])}} {{explode('-',$d->pensiun)[0]}}</td>
+    						<td>
+                            @if($d->pensiun != "0000-00-00 00:00:00")
+                                {{Lib::bulan(explode('-',$d->pensiun)[1])}} {{explode('-',$d->pensiun)[0]}}
+                            @endif
+                            </td>
                                 @if(Auth::user())
                             <td>
                             <a type="button" class="btn btn-success btn-xs" href="/admin/tambahpeneliti?edit=1&id={{$d->id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a> 
