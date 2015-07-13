@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html">Sistem Pakar</a>
+    <a class="navbar-brand" href="index.html">Kepakaran Peneliti</a>
 </div>
             <!-- /.navbar-header -->
             @if(Auth::user())
