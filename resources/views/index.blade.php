@@ -3,7 +3,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pusat Penelitian Geoteknologi LIPI</h1>
+                    <h1 class="page-header"><img src="/images/logo.jpg" height="100" /> Pusat Penelitian Geoteknologi LIPI</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
