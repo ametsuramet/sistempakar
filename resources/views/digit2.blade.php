@@ -13,6 +13,8 @@
     </div>	
     <div class="row">
     	<div class="col-md-12">
+            @include('alert')
+        
     		<div class="table-responsive">
     			<table class="table table-bordered table-hover">
     				<thead>

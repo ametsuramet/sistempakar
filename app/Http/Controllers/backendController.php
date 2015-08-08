@@ -161,18 +161,33 @@ class backendController extends masterController
                 peneliti::destroy($_GET['id']);
                 break;
             case 'digit2':
+                $check = digit3::where('digit2',$_GET['id'])->count();
+                if($check)
+                return Redirect::back()->with('danger','item tidak dapat didelete, karena terdapat data terkait item tersebut');  
                 digit2::destroy($_GET['id']);
                 break; 
             case 'digit3':
+                $check = spesifik::where('digit3',$_GET['id'])->count();
+                if($check)
+                return Redirect::back()->with('danger','item tidak dapat didelete, karena terdapat data terkait item tersebut');  
                 digit3::destroy($_GET['id']);
                 break; 
             case 'spesifik':
+                $check = peneliti::where('spesifik',$_GET['id'])->count();
+                if($check)
+                return Redirect::back()->with('danger','item tidak dapat didelete, karena terdapat data terkait item tersebut');     
                 spesifik::destroy($_GET['id']);
                 break; 
             case 'jabatan':
+                $check = peneliti::where('jabatan',$_GET['id'])->count();
+                if($check)
+                return Redirect::back()->with('danger','item tidak dapat didelete, karena terdapat data terkait item tersebut');  
                 jabatan::destroy($_GET['id']);
                 break; 
             case 'pangkat':
+                $check = peneliti::where('pangkat',$_GET['id'])->count();
+                if($check)
+                return Redirect::back()->with('danger','item tidak dapat didelete, karena terdapat data terkait item tersebut');  
                 pangkat::destroy($_GET['id']);
                 break; 
             case 'user':

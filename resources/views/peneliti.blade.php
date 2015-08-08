@@ -17,6 +17,7 @@
     </div>
     <div class="row">
     	<div class="col-md-12">
+            @include('alert')
     		<div class="table-responsive">
     			<table class="table table-bordered table-hover">
     				<thead>
@@ -71,7 +72,9 @@
                                 </a>
                             </td>
     						<td>
-                            
+                            @if($d->pensiun != "0000-00-00 00:00:00")
+                                {{Lib::bulan(explode('-',$d->pensiun)[1])}} {{explode('-',$d->pensiun)[0]}}
+                            @endif
                             </td>
                                 @if(Auth::user())
                             <td>
