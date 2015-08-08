@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <img src="/images/logo.jpg" height="100" style="float:left;margin-top: 30px;margin-right: 10px;" />
-                    <h1 class="page-header" style="color:#3851D0"> Pusat Penelitian Geoteknologi LIPI <br><span style="text-transform:uppercase" >Lembaga Ilmu Pengetahuan Indonesia</span></h1>
+                    <h1 class="page-header" style="color:#3851D0;text-transform:uppercase"> Pusat Penelitian Geoteknologi <br><span style="" >Lembaga Ilmu Pengetahuan Indonesia</span></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
