@@ -40,7 +40,46 @@
     				<tbody>
     					@if(count($data))
     					@foreach($data as $i=>$d)
-    					   <?php print_r($d) ?>
+    					<tr>
+    						<td>{{$i+1}}</td>
+    						<td>
+                                <a href='/peneliti?digit2={{$d->pakar_spesifik->pakar_digit3->pakar_digit2->id}}'>
+                                    {{$d->pakar_spesifik->pakar_digit3->pakar_digit2->nama}}
+                                </a>
+                            </td>
+    						<td>
+                                <a href='/peneliti?digit3={{$d->pakar_spesifik->pakar_digit3->id}}'>
+                                    {{$d->pakar_spesifik->pakar_digit3->nama}}
+                                </a>
+                            </td>
+    						<td>{{$d->nama}}</td>
+    						<td>{{$d->nip}}</td>
+    						<td>
+                                <a href='/peneliti?jabatan={{$d->detail_jabatan->id}}'>
+                                {{$d->detail_jabatan->nama}}
+                                </a>
+                            </td>
+    						<td>{{$d->pendidikan}}</td>
+    						<td>
+                                <a href='/peneliti?pangkat={{$d->detail_pangkat->id}}'>
+                                {{$d->detail_pangkat->nama}}
+                                </a>
+                            </td>
+    						<td>
+                                <a href='/peneliti?spesifik={{$d->pakar_spesifik->id}}'>
+                                {{$d->pakar_spesifik->nama}}
+                                </a>
+                            </td>
+    						<td>
+                            
+                            </td>
+                                @if(Auth::user())
+                            <td>
+                            <a type="button" class="btn btn-success btn-xs" href="/admin/tambahpeneliti?edit=1&id={{$d->id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a> 
+                             <a type="button" class="btn btn-danger btn-xs delete" href="/admin/delete?mode=peneliti&id={{$d->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+                            </td>
+                                @endif
+    					</tr>
     					@endforeach
     					@else
     					<tr>
