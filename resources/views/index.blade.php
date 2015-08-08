@@ -8,7 +8,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+            <!-- /.row -->   
             <div class="row">
                 <div class="col-lg-12 col-md-6">
                     <p>Selamat Datang di Sistem Informasi Kepakaran Pusat Penelitian Geoteknologi LIPI, sistem ini memudahkan anda untuk mengakses basis data peneliti di lingkungan Pusat Penelitian Geoteknologi LIPI.</p>
